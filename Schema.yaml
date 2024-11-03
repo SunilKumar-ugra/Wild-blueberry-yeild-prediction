@@ -1,0 +1,22 @@
+COLUMNS: 
+  id: int64
+  Row#: float64
+  clonesize: float64
+  honeybee: float64
+  bumbles: float64
+  andrena: float64
+  osmia: float64
+  MaxOfUpperTRange: float64
+  MinOfUpperTRange: float64
+  AverageOfUpperTRange: float64
+  MaxOfLowerTRange: float64
+  MinOfLowerTRange: float64
+  AverageOfLowerTRange: float64
+  RainingDays: float64
+  AverageRainingDays: float64
+  fruitset: float64
+  fruitmass: float64
+  seeds: float64
+  yield: float64
+TARGET_COLUMN: 
+  name: yield

@@ -1,0 +1,19 @@
+scikit-learn
+pandas 
+dvc
+mlflow
+numpy
+matplotlib
+seaborn
+python-box
+pyYAML
+ensure
+joblib
+types-PyYAML
+scipy
+Flask
+Flask-Cors
+kaggle
+python-dotenv
+pytest
+-e .

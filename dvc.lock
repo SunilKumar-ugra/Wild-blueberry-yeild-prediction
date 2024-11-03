@@ -1,0 +1,130 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/wildblueberry/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 1f5ba5336be9910bc72289167c094537
+      size: 1237
+    - path: src/wildblueberry/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: e874cda7b9d0a45aa7990283de7e3e6c
+      size: 892
+    outs:
+    - path: artifacts/data_ingestion/data.zip
+      hash: md5
+      md5: c988d105057cd17d13af3e38a8851d6c
+      size: 691724
+    - path: artifacts/data_ingestion/test.csv
+      hash: md5
+      md5: 319204460afa1a1ad8672f0429704207
+      size: 1110682
+    - path: artifacts/data_ingestion/train.csv
+      hash: md5
+      md5: 762ef079245862f4e9c79a5621c63abb
+      size: 1818113
+  data_validation:
+    cmd: python src/wildblueberry/pipeline/stage_02_data_validation.py
+    deps:
+    - path: artifacts/data_ingestion/test.csv
+      hash: md5
+      md5: 319204460afa1a1ad8672f0429704207
+      size: 1110682
+    - path: artifacts/data_ingestion/train.csv
+      hash: md5
+      md5: 762ef079245862f4e9c79a5621c63abb
+      size: 1818113
+    - path: config/config.yaml
+      hash: md5
+      md5: 1f5ba5336be9910bc72289167c094537
+      size: 1237
+    - path: src/wildblueberry/pipeline/stage_02_data_validation.py
+      hash: md5
+      md5: f5a280bde1afba7c417f5ba88e8779f4
+      size: 941
+    outs:
+    - path: artifacts/data_validation/status.txt
+      hash: md5
+      md5: 86e6a2f694c57a675b3e2da6b95ff9ba
+      size: 23
+  data_transformation:
+    cmd: python src/wildblueberry/pipeline/stage_03_data_transformation.py
+    deps:
+    - path: artifacts/data_ingestion/test.csv
+      hash: md5
+      md5: 319204460afa1a1ad8672f0429704207
+      size: 1110682
+    - path: artifacts/data_ingestion/train.csv
+      hash: md5
+      md5: 762ef079245862f4e9c79a5621c63abb
+      size: 1818113
+    - path: config/config.yaml
+      hash: md5
+      md5: 1f5ba5336be9910bc72289167c094537
+      size: 1237
+    - path: src/wildblueberry/pipeline/stage_03_data_transformation.py
+      hash: md5
+      md5: e8c6a08134ef16a587df92c09474dee0
+      size: 950
+    outs:
+    - path: artifacts/data_transformation/test.csv
+      hash: md5
+      md5: c61c5932ed3bf81df5028284fe653b19
+      size: 1061427
+    - path: artifacts/data_transformation/train.csv
+      hash: md5
+      md5: 2f2dae17c34b3425ade48db97740cd6f
+      size: 3188855
+  model_trainer:
+    cmd: python src/wildblueberry/pipeline/stage_04_model_trainer.py
+    deps:
+    - path: artifacts/data_transformation/test.csv
+      hash: md5
+      md5: c61c5932ed3bf81df5028284fe653b19
+      size: 1061427
+    - path: artifacts/data_transformation/train.csv
+      hash: md5
+      md5: 2f2dae17c34b3425ade48db97740cd6f
+      size: 3188855
+    - path: config/config.yaml
+      hash: md5
+      md5: 1f5ba5336be9910bc72289167c094537
+      size: 1237
+    - path: src/wildblueberry/pipeline/stage_04_model_trainer.py
+      hash: md5
+      md5: 6d7ca609cf1909b9c4e1123ff64e1b4a
+      size: 924
+    outs:
+    - path: artifacts/model_trainer/model.joblib
+      hash: md5
+      md5: 6c438513b7862835f6f954eb894c05bf
+      size: 1439
+  model_evaluation:
+    cmd: python src/wildblueberry/pipeline/stage_05_model_evaluation.py
+    deps:
+    - path: artifacts/data_transformation/test.csv
+      hash: md5
+      md5: c61c5932ed3bf81df5028284fe653b19
+      size: 1061427
+    - path: artifacts/data_transformation/train.csv
+      hash: md5
+      md5: 2f2dae17c34b3425ade48db97740cd6f
+      size: 3188855
+    - path: artifacts/model_trainer/model.joblib
+      hash: md5
+      md5: 6c438513b7862835f6f954eb894c05bf
+      size: 1439
+    - path: config/config.yaml
+      hash: md5
+      md5: 1f5ba5336be9910bc72289167c094537
+      size: 1237
+    - path: src/wildblueberry/pipeline/stage_05_model_evaluation.py
+      hash: md5
+      md5: 5efcfeea3fa70f6bcdadaa8bd94496b2
+      size: 898
+    outs:
+    - path: artifacts/model_evaluation/metrics.json
+      hash: md5
+      md5: 43a4b6c35f7847a259d3d2e3d6a79f14
+      size: 98
