@@ -86,7 +86,7 @@ jobs:
 
       - name: Stop and remove container if running
         run: |
-         docker ps -q --filter "name=wild_blueberry" | grep -q . && docker stop wild_blueberry && docker rm -fv wild_blueberry
+         docker ps -q --filter "names=wild_blueberry" | grep -q . && docker stop wild_blueberry && docker rm -fv wild_blueberry
 
       # - name: Run Docker Image to serve users
       #   run: |
