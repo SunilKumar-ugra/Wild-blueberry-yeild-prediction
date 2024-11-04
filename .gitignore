@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
 ml_notebooks/
+production.md
 __pycache__/
 *.py[cod]
 *$py.class
